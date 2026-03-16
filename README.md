@@ -19,14 +19,16 @@ Flashcards use a 3D flip animation so users can tap a card to switch between the
 Users can update the question or answer of any existing flashcard.
 5.Text-to-Speech Support
 Flashcards can be read aloud using AVFoundation, enabling users to revise through audio as well as visual learning.
-6.Reminder System
+6.Quiz Mode
+Users can test their knowledge through a quiz interface generated from their flashcards, making revision more interactive.
+7.Reminder System
 FlashForge includes revision reminders to help reinforce learning:
 -Weekly reminders
 -Monthly reminders
 -Custom reminder dates
-7.Reminder Dashboard
+8.Reminder Dashboard
 A dedicated Reminders tab displays all flashcards that have upcoming revision schedules.
-8.Accessibility Support
+9.Accessibility Support
 Accessibility labels and hints are included to improve usability with assistive technologies.
 
 TECH STACK
