@@ -1,6 +1,12 @@
 
 import Foundation
 
+enum RecallTab: Hashable {
+    case home
+    case flashcards
+    case reminders
+}
+
 enum ReminderFrequency: String, CaseIterable, Codable {
     case none
     case weekly

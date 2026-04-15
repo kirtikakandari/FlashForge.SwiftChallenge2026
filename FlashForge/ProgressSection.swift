@@ -2,7 +2,7 @@
 import SwiftUI
 
 struct ProgressSectionView: View {
-    @ObservedObject var tracker = ReviewTracker.shared
+    var tracker = ReviewTracker.shared
 
     var body: some View {
         let total = totalReviews()

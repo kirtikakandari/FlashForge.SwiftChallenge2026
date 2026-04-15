@@ -1,6 +1,5 @@
 
 import SwiftUI
-import Combine
 
 struct FlashcardsView: View {
     @Binding var flashcards: [Flashcard]
@@ -8,7 +7,7 @@ struct FlashcardsView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    @StateObject private var quizProgressStore = QuizProgressStore()
+    @State private var quizProgressStore = QuizProgressStore()
     @State private var selectedCard: Flashcard?
     @State private var selectedFolder: SelectedFolder?
     @State private var activeQuiz: QuizSession?
@@ -314,8 +313,8 @@ struct FlashcardsView: View {
                 folderNameTargetID = nil
             }
         }
-        .simulatorSafeSensoryFeedback(.selection, trigger: selectedForGrouping.count)
-        .simulatorSafeSensoryFeedback(.success, trigger: groupCreatedFeedbackToken)
+        .sensoryFeedback(.selection, trigger: selectedForGrouping.count)
+        .sensoryFeedback(.success, trigger: groupCreatedFeedbackToken)
     }
 }
 
@@ -821,8 +820,9 @@ private struct QuizStats: Codable {
     var attempts: Int = 0
 }
 
-private final class QuizProgressStore: ObservableObject {
-    @Published private(set) var stats: [String: QuizStats] = [:]
+@Observable
+private final class QuizProgressStore {
+    private(set) var stats: [String: QuizStats] = [:]
 
     private let storageKey = "flashforge.quiz.progress.v1"
 
@@ -863,7 +863,7 @@ private final class QuizProgressStore: ObservableObject {
 
 private struct QuizLauncherSheet: View {
     let flashcards: [Flashcard]
-    @ObservedObject var progressStore: QuizProgressStore
+    var progressStore: QuizProgressStore
     let onStartQuiz: (FlashcardsView.QuizPeriod) -> Void
 
     @Environment(\.dismiss) private var dismiss

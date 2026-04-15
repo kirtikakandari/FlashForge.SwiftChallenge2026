@@ -2,13 +2,13 @@ import SwiftUI
 
 struct HomeView: View {
     @Binding var flashcards: [Flashcard]
-    @Binding var selectedTab: ContentView.RecallTab
+    @Binding var selectedTab: RecallTab
     @Binding var weeklyEnabled: Bool
     @Binding var monthlyEnabled: Bool
 
     @State private var question = ""
     @State private var answer = ""
-    @StateObject private var aiService = AIStudyService()
+    @State private var aiService = AIStudyService()
 
     @State private var headerOpacity: Double = 0
     @State private var formOpacity: Double = 0
@@ -184,7 +184,7 @@ struct HomeView: View {
                 formOpacity = 1
             }
         }
-        .simulatorSafeSensoryFeedback(.selection, trigger: aiService.questions.count)
+        .sensoryFeedback(.selection, trigger: aiService.questions.count)
     }
 }
 

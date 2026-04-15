@@ -1,24 +1,22 @@
 
 import SwiftUI
-import Combine
 import FoundationModels
 
-@MainActor
-final class AIStudyService: ObservableObject {
-    @Published var questions: [String] = []
-    @Published var isLoading = false
-    @Published var errorMessage: String?
+@Observable
+final class AIStudyService {
+    var questions: [String] = []
+    var isLoading = false
+    var errorMessage: String?
 
-    private let model = SystemLanguageModel.default
-    private lazy var session = LanguageModelSession(model: model)
+    private let session: LanguageModelSession
 
     private var canUseOnDeviceModel: Bool {
-        if #available(iOS 18.0, *) {
-            return model.isAvailable
-        }
-        return false
+        SystemLanguageModel.default.isAvailable
     }
 
+    init() {
+        self.session = LanguageModelSession(model: SystemLanguageModel.default)
+    }
 
     func generateQuestions(from topic: String) async {
         guard topic.count > 2 else {
@@ -68,7 +66,6 @@ final class AIStudyService: ObservableObject {
             errorMessage = "Failed to generate questions."
         }
     }
-
 
     func generateAnswer(for question: String) async -> String {
         if canUseOnDeviceModel {

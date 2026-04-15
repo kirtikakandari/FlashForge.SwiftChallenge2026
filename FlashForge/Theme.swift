@@ -100,15 +100,4 @@ extension View {
         modifier(ThemedTextField())
     }
 
-    @ViewBuilder
-    func simulatorSafeSensoryFeedback<T: Equatable>(
-        _ feedback: SensoryFeedback,
-        trigger: T
-    ) -> some View {
-        #if targetEnvironment(simulator)
-        self
-        #else
-        self.sensoryFeedback(feedback, trigger: trigger)
-        #endif
-    }
 }

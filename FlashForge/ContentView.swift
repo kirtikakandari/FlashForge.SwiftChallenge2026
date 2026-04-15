@@ -2,12 +2,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    enum RecallTab: Hashable {
-        case home
-        case flashcards
-        case reminders
-    }
-
     @State private var flashcards: [Flashcard] = []
     @State private var selectedTab: RecallTab = .home
 

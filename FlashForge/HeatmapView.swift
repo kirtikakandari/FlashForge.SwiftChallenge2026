@@ -2,7 +2,7 @@
 import SwiftUI
 
 struct HeatmapView: View {
-    @ObservedObject var tracker = ReviewTracker.shared
+    var tracker = ReviewTracker.shared
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
 

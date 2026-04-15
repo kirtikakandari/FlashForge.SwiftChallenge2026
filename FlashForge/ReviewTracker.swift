@@ -1,12 +1,12 @@
 
 import SwiftUI
-import Combine
 
-class ReviewTracker: ObservableObject {
+@Observable
+class ReviewTracker {
     
     static let shared = ReviewTracker()
     
-    @Published var dailyReviews: [String: Int] = [:]
+    var dailyReviews: [String: Int] = [:]
     
     private let storageKey = "dailyReviewCounts"
     
@@ -41,5 +41,3 @@ class ReviewTracker: ObservableObject {
         }
     }
 }
-
-
